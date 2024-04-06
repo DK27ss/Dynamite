@@ -15,7 +15,7 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
        |   o   |/         / / / / 
        '---`(--' 0x1     />>=<
 
-# Requirements - solc
+# Requirements - Solc
 // Install solc with Node.js
  
     npm install -g solc
@@ -24,7 +24,7 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
 
     docker run ethereum/solc:stable --standard-json < input.json > output.json
 
-// Install with Linux Packages
+// Install solc with Linux Packages
 
     sudo add-apt-repository ppa:ethereum/ethereum
     sudo apt-get update
@@ -41,8 +41,25 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
     sudo snap install solc
     sudo snap install solc --edge
 
-# Usage
-// Simple Run
+# Requirements - Slither
+// Install slither with Pip
+
+    python3 -m pip install slither-analyzer
+
+// Install slither with Git
+
+    git clone https://github.com/crytic/slither.git && cd slither
+    python3 -m pip install .
+
+// Install slither with Docker
+
+    docker pull trailofbits/eth-security-toolbox
+    docker run -it -v /home/share:/share trailofbits/eth-security-toolbox
+
+# Dynamite Usage
+// Simple Dynamite Run
+
+> Once all the requirements have been installed, or if you already have the requirements on your system, you can type the following command to launch the dynamite.
 
        python dynamite.py
 
