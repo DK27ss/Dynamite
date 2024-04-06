@@ -3,6 +3,7 @@ import requests
 import colorama
 from colorama import Fore
 import subprocess
+import time
 
 print("""
           ____
@@ -16,7 +17,7 @@ print("""
 
 api_key = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
 
-contract_address = input("ERC20 CONTRAT >> ")
+contract_address = input("TARGET CONTRAT >> ")
 
 account_address = (contract_address)
 
@@ -54,6 +55,8 @@ if data_transfers['status'] == "1":
         if match:
             solidity_version = match.group(1)
             print("Solidity Compiler:", solidity_version)
+
+            time.sleep(2)
 
             print("")
             print("")
