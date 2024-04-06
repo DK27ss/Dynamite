@@ -67,8 +67,20 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
 
 > if by mistake you encounter problems with the compiler version, please execute the commands shown in the following screenshot to guide you and solve your problems for future analysis.
 ![solve](https://github.com/DK27ss/Dynamite/assets/134336163/a713d69f-03e7-4f59-8385-08235f952482)
+> install the solidity compiler (X.X.X = compiler version)
+
+    solc-select install X.X.X
+
+> set the solidity compiler (X.X.X = compiler version)
+
+    solc-select use X.X.X
+    
 > then launch the slither scan manually, which requires adding slither to your PATH so that you can call it from anywhere.
 ![solve2](https://github.com/DK27ss/Dynamite/assets/134336163/61b5b88b-b3df-4779-bc8b-43bfb592907b)
+
+> run slither manually (0x000000000000 = token smart contract source code)
+
+    slither 0x000000000000.sol
 
 
 
