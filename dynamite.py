@@ -98,11 +98,11 @@ if data_transfers['status'] == "1":
                     print(Fore.RED + "[ERROR] " + Fore.YELLOW + "slither not executed!")
 
             else:
-                print("La version du compilateur Solidity extraite est invalide.")
+                print("Invalid Solidity compilater version")
         else:
-            print("Aucune déclaration pragma solidity trouvée dans le code source du contrat.")
+            print("No pragma solidity declaration found in the contract source code.")
     else:
-        print("Erreur lors de la récupération des détails du contrat:", data_contract_details['message'])
+        print("Error retrieving contract details:", data_contract_details['message'])
 
 else:
-    print("Erreur lors de la récupération des données:", data_transfers['message'])
+    print("Data recovery error:", data_transfers['message'])
