@@ -17,7 +17,7 @@ print("""
 
 api_key = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
 
-contract_address = input("TARGET CONTRAT >> ")
+contract_address = input("TARGET CONTRACT >> ")
 
 account_address = (contract_address)
 
@@ -60,48 +60,48 @@ if data_transfers['status'] == "1":
 
             print("")
             print("")
-            print(Fore.MAGENTA + "[+] " + Fore.YELLOW + "CONTRAT SOURCE CODE" + Fore.CYAN)
+            print(Fore.MAGENTA + "[+] " + Fore.YELLOW + "CONTRACT SOURCE CODE" + Fore.CYAN)
             print("")
             print("")
             print(source_code)
             print("")
             print("")
 
-            save_choice = input(Fore.YELLOW + "Save contrat source code [.sol] ? (Y/n) ")
-            if save_choice.lower() == 'y':
+            save_choice = input(Fore.YELLOW + "Save contract source code [.sol] ? (Y/n) ").strip().lower() or 'y'
+            if save_choice == 'y':
                 filename = contract_address + ".sol"
                 with open(filename, "w") as f:
                     f.write(source_code)
-                print(Fore.CYAN + "contrat source code saved at " + Fore.CYAN + f"{filename}" + Fore.WHITE)
+                print(Fore.CYAN + "contract source code saved at " + Fore.CYAN + f"{filename}" + Fore.WHITE)
             else:
-                print(Fore.RED + "[ERROR] " + Fore.YELLOW + "contrat source code not saved !")
+                print(Fore.RED + "[ERROR] " + Fore.YELLOW + "contract source code not saved !")
 
             solidity_version_numbers = re.findall(r'\d+\.\d+\.\d+', solidity_version)
             if solidity_version_numbers:
                 solidity_version = solidity_version_numbers[0]
-                install_choice = input(Fore.YELLOW + f"Download solidity compiler {solidity_version}? (Y/n) " + Fore.WHITE)
-                if install_choice.lower() == 'y':
+                install_choice = input(Fore.YELLOW + f"Download solidity compiler {solidity_version}? (Y/n) ").strip().lower() or 'y'
+                if install_choice == 'y':
                     subprocess.run(["solc-select", "install", solidity_version])
                     print(Fore.YELLOW + f"{solidity_version}" + Fore.CYAN + " solidity compiler successfully download." + Fore.WHITE)
                 else:
                     print(Fore.RED + "[ERROR] " + Fore.YELLOW + "solidity compiler not download !")
 
-                use_choice = input(Fore.YELLOW + "Use solidity compiler " + Fore.CYAN + f"{solidity_version} " + Fore.WHITE +"? (Y/n) ")
-                if use_choice.lower() == 'y':
+                use_choice = input(Fore.YELLOW + "Use solidity compiler " + Fore.CYAN + f"{solidity_version} " + Fore.WHITE +"? (Y/n) ").strip().lower() or 'y'
+                if use_choice == 'y':
                     subprocess.run(["solc-select", "use", solidity_version])
                     print(Fore.YELLOW + f"{solidity_version}" + Fore.CYAN + " solidity compiler successfully added." + Fore.WHITE)
                 else:
                     print(Fore.RED + "[ERROR] " + Fore.YELLOW + "solidity compiler not added !")
 
-                slither_choice = input("Run" + Fore.MAGENTA + " slither analyzer " + Fore.MAGENTA + "on the locally saved .sol file? (Y/n) ")
-                if slither_choice.lower() == 'y':
+                slither_choice = input("Run" + Fore.MAGENTA + " slither analyzer " + Fore.MAGENTA + "on the locally saved .sol file? (Y/n) ").strip().lower() or 'y'
+                if slither_choice == 'y':
                     subprocess.run(["slither", filename])
                     print(Fore.GREEN + "[200 OK] " + Fore.WHITE)
                 else:
                     print(Fore.RED + "[ERROR] " + Fore.YELLOW + "slither not executed!")
 
             else:
-                print("Invalid Solidity compilater version")
+                print("Invalid Solidity compiler version")
         else:
             print("No pragma solidity declaration found in the contract source code.")
     else:
