@@ -61,8 +61,10 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
 
 > Once all the requirements have been installed, or if you already have the requirements on your system, you can type the following command to launch the dynamite.
 
-       python dynamite.py
+    python dynamite.py
 
+> if by mistake you encounter problems with the compiler version, please execute the commands shown in the following screenshot to guide you and solve your problems for future analysis.
+![solve](https://github.com/DK27ss/Dynamite/assets/134336163/a713d69f-03e7-4f59-8385-08235f952482)
 
 
 
