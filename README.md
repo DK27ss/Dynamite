@@ -9,7 +9,7 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
 
                  ____
          '-..-'    Dynamite     .-.
-        ___||___  @makaki22  .-/ /-.   Beta Version
+        ___||___  @makaki22  .-/ /-.   
        /_______/|           / / / /    Buy me a Coffee ! --> 0x6117A78a0122639E61f03eB518be6626b00886a3
        |       ||          / / / /
        |   o   |/         / / / / 
