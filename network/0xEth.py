@@ -15,6 +15,7 @@
 #
 
 import re
+import os
 import requests
 import colorama
 from colorama import Fore
@@ -91,10 +92,13 @@ def test_address():
                 print("")
                 print("")
 
-                filename = contract_address + ".sol"
+                if not os.path.exists("eth_check"):
+                    os.makedirs("eth_check")
+
+                filename = os.path.join("eth_check", contract_address + ".sol")
                 with open(filename, "w") as f:
                     f.write(source_code)
-                print(Fore.CYAN + "contract source code saved at " + Fore.CYAN + f"{filename}" + Fore.WHITE)
+                print(Fore.CYAN + "Contract source code saved at " + Fore.CYAN + f"{filename}" + Fore.WHITE)
 
                 solidity_version_numbers = re.findall(r'\d+\.\d+\.\d+', solidity_version)
                 if solidity_version_numbers:

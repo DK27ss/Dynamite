@@ -17,6 +17,7 @@
 import re
 import requests
 import colorama
+import os
 from colorama import Fore
 import subprocess
 import time
@@ -102,7 +103,10 @@ def test_address():
                 print("")
                 print("")
 
-                filename = contract_address + ".sol"
+                if not os.path.exists("avax_check"):
+                    os.makedirs("avax_check")
+
+                filename = os.path.join("avax_check", contract_address + ".sol")
                 with open(filename, "w") as f:
                     f.write(source_code)
                 print(Fore.CYAN + "Contract source code saved at " + Fore.CYAN + f"{filename}" + Fore.WHITE)
