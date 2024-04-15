@@ -46,6 +46,9 @@ def test_address():
 
     account_address = (contract_address)
 
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. 🔍" + Fore.WHITE)
+    print("")
+
     url_transfers = f'https://api.basescan.org/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
 
     response_transfers = requests.get(url_transfers)
@@ -53,7 +56,7 @@ def test_address():
     try:
         data_transfers = response_transfers.json()
     except ValueError:
-        print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " Failed to decode JSON response from BaseScan API")
+        print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " Failed to decode JSON response from BaseScan API")
         return
 
     if data_transfers['status'] == "1":
@@ -82,7 +85,7 @@ def test_address():
         try:
             data_contract_details = response_contract_details.json()
         except ValueError:
-            print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " Failed to decode JSON response from BaseScan API for contract details")
+            print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " Failed to decode JSON response from BaseScan API for contract details")
             return
 
         if data_contract_details['status'] == "1":
@@ -96,7 +99,7 @@ def test_address():
 
                 print("")
                 print("")
-                print(Fore.MAGENTA + "[+] " + Fore.YELLOW + "CONTRACT SOURCE CODE" + Fore.CYAN)
+                print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " CONTRACT CODE" + Fore.CYAN)
                 print("")
                 print("")
                 print(source_code)
@@ -121,14 +124,14 @@ def test_address():
                     subprocess.run(["slither", filename])
                     print(Fore.GREEN + "[200 OK] " + Fore.WHITE)
                 else:
-                    print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " Invalid Solidity compiler version")
+                    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + Fore.RED + " Invalid Solidity compiler version")
             else:
-                print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " No pragma solidity declaration found in the contract source code.")
+                print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " No pragma solidity declaration found in the contract source code.")
         else:
-            print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " Error retrieving contract details:", data_contract_details['message'])
+            print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " Error retrieving contract details:", data_contract_details['message'])
 
     else:
-        print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " Data retrieval error:", data_transfers['message'])
+        print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + "Data retrieval error:", data_transfers['message'])
 
     test_address()
 
