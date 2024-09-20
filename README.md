@@ -7,6 +7,9 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
 
 > it automatically adapts the compiler version to the smart contract compiler version, so that the slither scan can be performed as quickly as possible
 
+
+![afjhxolq](https://github.com/user-attachments/assets/2c51d23e-5991-405d-8bb9-fbe0fc453819)
+
                  ____
          '-..-'    Dynamite     .-.
         ___||___  @makaki22  .-/ /-.   
