@@ -3,20 +3,15 @@ Dynamite - For Automatic Analysis of Ethereum Smart Contracts
 
 Dynamite is a simple tool coded in Python that automatically analyzes a smart contract using slither and the Etherscan API.
 
+
+![afjhxolq](https://github.com/user-attachments/assets/668b9499-ff15-4020-a680-2d68dc065552)
+
+
 > it automatically detects tokens symbols, tokens balances and the smart contract solidity compiler version.
 
 > it automatically adapts the compiler version to the smart contract compiler version, so that the slither scan can be performed as quickly as possible
 
 
-![afjhxolq](https://github.com/user-attachments/assets/2c51d23e-5991-405d-8bb9-fbe0fc453819)
-
-                 ____
-         '-..-'    Dynamite     .-.
-        ___||___  @makaki22  .-/ /-.   
-       /_______/|           / / / /    Buy me a Coffee ! --> 0x6117A78a0122639E61f03eB518be6626b00886a3
-       |       ||          / / / /
-       |   o   |/         / / / / 
-       '---`(--' 0x1     />>=<
 
 # Requirements - Solc
 // Install solc with Node.js
