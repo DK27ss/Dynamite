@@ -57,6 +57,16 @@ Dynamite is a simple tool coded in Python that automatically analyzes a smart co
 # Dynamite Usage
 // Simple Dynamite Run
 
+
+
+https://github.com/user-attachments/assets/be051f22-0c67-48e3-9f11-5585bff29992
+
+
+
+https://github.com/user-attachments/assets/c968bb9e-f44a-41d2-89e3-588d677e76dd
+
+
+
 > Once all the requirements have been installed, or if you already have the requirements on your system, you can type the following command to launch the dynamite.
 
     python dynamite.py
