@@ -1,3 +1,19 @@
+#   Copyright 2024. SUPERPOSE INT. All rights reserved.
+#   ___    A
+#   | |   {*}       This vulnerability recognition software, including all source code, documentation and associated files, is the exclusive property of @makaki22. Any unauthorized
+#   | |  __V__      reproduction, distribution or modification of this software is strictly prohibited.
+#   |_|o_|%%%|0_    This software is provided "as is" without warranty of any kind, either express or implied, including, but not limited to, the implied warranties of merchantability, 
+#      |       |    fitness for a particular purpose and non-infringement. In no event shall @makaki22 be liable for any direct, indirect, incidental, special or consequential damages arising 
+#      |       |    out of the use or inability to use this software, even if advised of the possibility of such damages.
+#      |_______|
+#                   Use of this software is subject to the terms and conditions of the applicable license agreement provided with the software.
+#                   By using this software, you agree to be bound by the terms of this license.
+#
+#                   If you have any questions about this software or require additional permissions, please contact @makaki22 on telegram.
+#
+
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 import os
 import subprocess
 import argparse
@@ -8,10 +24,21 @@ import threading
 from colorama import Fore
 import time
 
-# Remplacez par votre clé API Etherscan
-ETHERSCAN_API_KEY = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'  # Remplace par ta clé API Etherscan
+################
 
-def get_contract_source_code(contract_address):
+ETHERSCAN_API_KEY = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
+BASE_API_KEY = 'VUNI3HKC7VDBRRAJEUAJWA5ABDIKFF9AIS'
+BSC_API_KEY = 'M41SV3B61NEEH55ZZ421ABE7CHWND7SWTW'
+CRO_API_KEY = 'UF9N1SZS5PCB647XVBE7AQ2XJVXQH7ZPSP'
+AVAX_API_KEY = 'J9BG6RAZB3R3W114MCTXP439D547SRNZGY'
+POLYGON_API_KEY = 'XUM9KC73EVNM682515IUCQJKC8TFW2GXMI'
+
+################
+
+######################################################################################################
+######################################################################################################
+
+def get_contract_source_code_ether(contract_address):
     url = f"https://api.etherscan.io/api"
     params = {
         'module': 'contract',
@@ -28,10 +55,154 @@ def get_contract_source_code(contract_address):
     else:
         raise Exception("Erreur lors de la récupération du code source : " + data['message'])
 
-def extract_function_names(contract_code):
+def extract_function_names_ether(contract_code):
     function_pattern = r'\bfunction\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\('
     function_names = re.findall(function_pattern, contract_code)
     return function_names
+
+
+######################################################################################################
+######################################################################################################
+
+def get_contract_source_code_base(contract_address):
+    url = f"https://api.basescan.org/api"
+    params = {
+        'module': 'contract',
+        'action': 'getsourcecode',
+        'address': contract_address,
+        'apiKey': BASE_API_KEY
+    }
+    
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if data['status'] == '1':
+        return data['result'][0]['SourceCode']
+    else:
+        raise Exception("Erreur lors de la récupération du code source : " + data['message'])
+
+def extract_function_names_base(contract_code):
+    function_pattern = r'\bfunction\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\('
+    function_names = re.findall(function_pattern, contract_code)
+    return function_names
+
+
+######################################################################################################
+######################################################################################################
+
+def get_contract_source_code_bsc(contract_address):
+    url = f"https://api.bscscan.com/api"
+    params = {
+        'module': 'contract',
+        'action': 'getsourcecode',
+        'address': contract_address,
+        'apiKey': BSC_API_KEY
+    }
+    
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if data['status'] == '1':
+        return data['result'][0]['SourceCode']
+    else:
+        raise Exception("Erreur lors de la récupération du code source : " + data['message'])
+
+def extract_function_names_bsc(contract_code):
+    function_pattern = r'\bfunction\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\('
+    function_names = re.findall(function_pattern, contract_code)
+    return function_names
+
+######################################################################################################
+######################################################################################################
+
+def get_contract_source_code_cronos(contract_address):
+    url = f"https://api.cronoscan.com/api"
+    params = {
+        'module': 'contract',
+        'action': 'getsourcecode',
+        'address': contract_address,
+        'apiKey': CRO_API_KEY
+    }
+    
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if data['status'] == '1':
+        return data['result'][0]['SourceCode']
+    else:
+        raise Exception("Erreur lors de la récupération du code source : " + data['message'])
+
+def extract_function_names_cronos(contract_code):
+    function_pattern = r'\bfunction\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\('
+    function_names = re.findall(function_pattern, contract_code)
+    return function_names
+
+
+######################################################################################################
+######################################################################################################
+
+def get_contract_source_code_avax(contract_address):
+    url = f"https://api.snowscan.xyz/api"
+    params = {
+        'module': 'contract',
+        'action': 'getsourcecode',
+        'address': contract_address,
+        'apiKey': AVAX_API_KEY
+    }
+    
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if data['status'] == '1':
+        return data['result'][0]['SourceCode']
+    else:
+        raise Exception("Erreur lors de la récupération du code source : " + data['message'])
+
+def extract_function_names_avax(contract_code):
+    function_pattern = r'\bfunction\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\('
+    function_names = re.findall(function_pattern, contract_code)
+    return function_names
+
+######################################################################################################
+######################################################################################################
+
+def get_contract_source_code_polygon(contract_address):
+    url = f"https://api.polygonscan.com/api"
+    params = {
+        'module': 'contract',
+        'action': 'getsourcecode',
+        'address': contract_address,
+        'apiKey': POLYGON_API_KEY
+    }
+    
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if data['status'] == '1':
+        return data['result'][0]['SourceCode']
+    else:
+        raise Exception("Erreur lors de la récupération du code source : " + data['message'])
+
+def extract_function_names_polygon(contract_code):
+    function_pattern = r'\bfunction\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\('
+    function_names = re.findall(function_pattern, contract_code)
+    return function_names
+
+######################################################################################################
+######################################################################################################
+
+
+
+def loading_animation():
+    chars = ['▖', '▘', '▝', '▗']  
+    while not stop_loading:
+        for char in chars:
+            print(Fore.YELLOW + f"\r[{char}] forge PoC creation ..", end="")
+            time.sleep(0.2)
+
+
+
+
 
 def call_network(network_file):
     network_path = os.path.join("network", network_file)
@@ -40,167 +211,215 @@ def call_network(network_file):
     else:
         print(Fore.RED + "[CRITICAL]" + Fore.WHITE + f"'{network_file}' was not found in the 'network' folder.")
 
-def call_catf_program(contract_address):
-    try:
-        contract_code = get_contract_source_code(contract_address)
-        function_names = extract_function_names(contract_code)
+
+
+
+def analyze_func_with_mistral(functions):
+    global stop_loading
+
+    MISTRAL_API_URL = "https://codestral.mistral.ai/v1/chat/completions"  
+    mistral_api_key = "SPVhQvPY2313gzVXeDVKYANdeIbSWDfZ"  # Remplace par ta clé d'API Mistral
+    
+    headers = {
+        "Authorization": "Bearer " + f"{mistral_api_key}",
+        "Content-Type": "application/json"
+    }
+
+    while True:
+        user_prompt_choice = input("Interact with Mistral API ? (Y/n) ")
+
+        if user_prompt_choice.lower() == 'n':
+            print(Fore.MAGENTA + "[API] " + Fore.YELLOW + "[MISTRAL] Interruption." + Fore.WHITE)
+            break
+
+        user_prompt = input(Fore.MAGENTA + "[API] " + Fore.YELLOW + "[MISTRAL] (press 'exit' to quit) " + Fore.WHITE + "\nDIRECT REQUEST # ")
+
+        if user_prompt.lower() == 'exit':
+            print(Fore.MAGENTA + "[API] " + Fore.YELLOW + "[MISTRAL] Interruption." + Fore.WHITE)
+            break
         
-        print(Fore.GREEN + "[#]" + Fore.WHITE + " dumped functions to " + Fore.MAGENTA + f"{contract_address}." + Fore.WHITE)
+        prompt = (
+            "Tu es un expert en analyse de smart contrats. Voici les fonctions que je souhaite analyser à nouveau :\n\n"
+            + "\n".join(functions) + "\n"
+            "Voici ma question : " + user_prompt
+        )
+
+        data = {
+            "model": "codestral-latest",
+            "messages": [{"role": "user", "content": prompt}]
+        }
+
+        # Lancer l'animation de chargement dans un autre thread
+        stop_loading = False
+        loading_thread = threading.Thread(target=loading_animation)
+        loading_thread.start()
+
+        try:
+            # Appel de l'API Mistral
+            response = requests.post(MISTRAL_API_URL, headers=headers, json=data)
+
+            # Stopper l'animation une fois l'appel terminé
+            stop_loading = True
+            loading_thread.join()  # Attendre la fin du thread d'animation
+
+            # Affichage de l'analyse ou de l'erreur
+            if response.status_code == 200:
+                analysis = response.json()['choices'][0]['message']['content']
+                print(Fore.MAGENTA + "\n[API] " + Fore.YELLOW + "[MISTRAL RESULT] " + Fore.CYAN + analysis + Fore.WHITE)
+            else:
+                print(Fore.RED + "[ERROR]" + Fore.WHITE + " failed to call Mistral API :", response.text)
+        except Exception as e:
+            stop_loading = True
+            loading_thread.join()  # Attendre la fin du thread d'animation
+            print(Fore.RED + "[ERROR]" + Fore.WHITE + f" Exception occurred: {str(e)}")
+
+###########################################################################################################################################
+###########################################################################################################################################
+
+def call_catf_program_ether_network(contract_address):
+    try:
+        # Récupérer le code source du contrat
+        contract_code = get_contract_source_code_ether(contract_address)
+        # Extraire les noms de fonctions
+        function_names = extract_function_names_ether(contract_code)
+        
+        # Afficher les fonctions dumpées
+        print(Fore.GREEN + "[#]" + Fore.WHITE + " Dumped functions for " + Fore.MAGENTA + f"{contract_address}:" + Fore.WHITE)
         for name in function_names:
             print(name)
-    except Exception as e:
-        print(e)
 
+        # Appeler l'analyse avec Mistral
+        analyze_func_with_mistral(function_names)
+
+    except Exception as e:
+        print(Fore.RED + "[ERROR]" + Fore.WHITE + f" {str(e)}")
+
+###########################################################################################################################################
+###########################################################################################################################################
+
+def call_catf_program_base_network(contract_address):
+    try:
+        # Récupérer le code source du contrat
+        contract_code = get_contract_source_code_base(contract_address)
+        # Extraire les noms de fonctions
+        function_names = extract_function_names_base(contract_code)
+        
+        # Afficher les fonctions dumpées
+        print(Fore.GREEN + "[#]" + Fore.WHITE + " Dumped functions for " + Fore.MAGENTA + f"{contract_address}:" + Fore.WHITE)
+        for name in function_names:
+            print(name)
+
+        # Appeler l'analyse avec Mistral
+        analyze_func_with_mistral(function_names)
+
+    except Exception as e:
+        print(Fore.RED + "[ERROR]" + Fore.WHITE + f" {str(e)}")
+
+
+
+###########################################################################################################################################
+###########################################################################################################################################
+
+def call_catf_program_bsc_network(contract_address):
+    try:
+        # Récupérer le code source du contrat
+        contract_code = get_contract_source_code_bsc(contract_address)
+        # Extraire les noms de fonctions
+        function_names = extract_function_names_bsc(contract_code)
+        
+        # Afficher les fonctions dumpées
+        print(Fore.GREEN + "[#]" + Fore.WHITE + " Dumped functions for " + Fore.MAGENTA + f"{contract_address}:" + Fore.WHITE)
+        for name in function_names:
+            print(name)
+
+        # Appeler l'analyse avec Mistral
+        analyze_func_with_mistral(function_names)
+
+    except Exception as e:
+        print(Fore.RED + "[ERROR]" + Fore.WHITE + f" {str(e)}")
+
+
+
+
+###########################################################################################################################################
+###########################################################################################################################################
+
+def call_catf_program_cronos_network(contract_address):
+    try:
+        # Récupérer le code source du contrat
+        contract_code = get_contract_source_code_cronos(contract_address)
+        # Extraire les noms de fonctions
+        function_names = extract_function_names_cronos(contract_code)
+        
+        # Afficher les fonctions dumpées
+        print(Fore.GREEN + "[#]" + Fore.WHITE + " Dumped functions for " + Fore.MAGENTA + f"{contract_address}:" + Fore.WHITE)
+        for name in function_names:
+            print(name)
+
+        # Appeler l'analyse avec Mistral
+        analyze_func_with_mistral(function_names)
+
+    except Exception as e:
+        print(Fore.RED + "[ERROR]" + Fore.WHITE + f" {str(e)}")
+
+
+
+###########################################################################################################################################
+###########################################################################################################################################
+
+
+def call_catf_program_avax_network(contract_address):
+    try:
+        # Récupérer le code source du contrat
+        contract_code = get_contract_source_code_avax(contract_address)
+        # Extraire les noms de fonctions
+        function_names = extract_function_names_avax(contract_code)
+        
+        # Afficher les fonctions dumpées
+        print(Fore.GREEN + "[#]" + Fore.WHITE + " Dumped functions for " + Fore.MAGENTA + f"{contract_address}:" + Fore.WHITE)
+        for name in function_names:
+            print(name)
+
+        # Appeler l'analyse avec Mistral
+        analyze_func_with_mistral(function_names)
+
+    except Exception as e:
+        print(Fore.RED + "[ERROR]" + Fore.WHITE + f" {str(e)}")
+
+
+
+###########################################################################################################################################
+###########################################################################################################################################
+
+def call_catf_program_polygon_network(contract_address):
+    try:
+        # Récupérer le code source du contrat
+        contract_code = get_contract_source_code_polygon(contract_address)
+        # Extraire les noms de fonctions
+        function_names = extract_function_names_polygon(contract_code)
+        
+        # Afficher les fonctions dumpées
+        print(Fore.GREEN + "[#]" + Fore.WHITE + " Dumped functions for " + Fore.MAGENTA + f"{contract_address}:" + Fore.WHITE)
+        for name in function_names:
+            print(name)
+
+        # Appeler l'analyse avec Mistral
+        analyze_func_with_mistral(function_names)
+
+    except Exception as e:
+        print(Fore.RED + "[ERROR]" + Fore.WHITE + f" {str(e)}")
+
+
+
+###########################################################################################################################################
+###########################################################################################################################################
 
 
 ## ETH MYTHRIL SCAN CONTRACT FUNCTION
 #######################
 #######################
 def eth_myth_scan_contract(contract_address):
-    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract data .. " + Fore.WHITE)
-    print("")
-
-    api_key = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
-    account_address = contract_address
-
-    url_transfers = f'https://api.etherscan.io/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
-
-    response_transfers = requests.get(url_transfers)
-    data_transfers = response_transfers.json()
-
-    if data_transfers['status'] == "1":
-        token_transfers = data_transfers['result']
-        token_balances = {}
-
-        for tx in token_transfers:
-            token_symbol = tx['tokenSymbol']
-            token_amount = int(tx['value']) / (10 ** int(tx['tokenDecimal']))
-
-            if token_symbol in token_balances:
-                token_balances[token_symbol] += token_amount
-            else:
-                token_balances[token_symbol] = token_amount
-
-        print("Check" + Fore.MAGENTA + " >> ", account_address, ":" + Fore.WHITE)
-
-        for symbol, balance in token_balances.items():
-            print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
-
-        url_contract_details = f'https://api.etherscan.io/api?module=contract&action=getsourcecode&address={contract_address}&apikey={api_key}'
-        response_contract_details = requests.get(url_contract_details)
-        data_contract_details = response_contract_details.json()
-
-        if data_contract_details['status'] == "1":
-            source_code = data_contract_details['result'][0]['SourceCode']
-            match = re.search(r"pragma solidity\s+([^\s]+);", source_code)
-            if match:
-                solidity_version = match.group(1)
-                print("Solidity Compiler:", solidity_version)
-
-                time.sleep(2)
-
-                print("")
-                print("")
-                print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " CONTRACT CODE" + Fore.CYAN)
-                print("")
-                print("")
-                print(source_code)
-                print("")
-                print("")
-
-                # Créer le dossier "eth_check" s'il n'existe pas
-                if not os.path.exists("eth_check"):
-                    os.makedirs("eth_check")
-
-                # Sauvegarder le fichier avec le nom du contrat (contract_address) dans "eth_check"
-                filename = os.path.join("eth_check", contract_address + ".sol")
-
-                if os.path.exists(filename):
-                    print(Fore.WHITE + "[" + Fore.RED + "avoided" + Fore.WHITE + "]" + Fore.YELLOW + ".sol already exists." + Fore.WHITE)
-                else:
-                    with open(filename, "w") as f:
-                        f.write(source_code)
-                    print(Fore.CYAN + "Contract source code saved at " + Fore.CYAN + f"{filename}" + Fore.WHITE)
-
-                # Analyse avec Mythril sur le fichier contract_address.sol dans "eth_check/"
-                print(Fore.YELLOW + "[INFO] Running Mythril analysis on the contract..." + Fore.WHITE)
-                subprocess.run(["myth", "a", filename])  # Commande myth a <filename>
-                print(Fore.GREEN + "[200 OK] Mythril analysis completed on " + contract_address + ".sol" + Fore.WHITE)
-
-                # Analyse par Mystral
-                analyze_with_mistral(source_code)
-
-            else:
-                print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " No pragma solidity declaration found in the contract source code.")
-        else:
-            print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " Error retrieving contract details:", data_contract_details['message'])
-    else:
-        print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " Data retrieval error:", data_transfers['message'])
-
-
-## MISTRAL ANALYSE & GEN POC FUNCTION
-#######################
-#######################
-
-def loading_animation():
-    chars = ['▖', '▘', '▝', '▗']  
-    while not stop_loading:
-        for char in chars:
-            print(Fore.YELLOW + f"\r[{char}] foundry PoC creation ..", end="")
-            time.sleep(0.2)
-
-def analyze_with_mistral(source_code):
-    global stop_loading
-
-    MISTRAL_API_URL = "https://codestral.mistral.ai/v1/chat/completions"  
-    mistral_api_kkey = "SPVhQvPY2313gzVXeDVKYANdeIbSWDfZ"
-    
-    headers = {
-        "Authorization": "Bearer " + f"{mistral_api_kkey}",
-        "Content-Type": "application/json"
-    }
-
-    prompt = (
-        "Tu es un expert en analyse de smart contrats et j'aimerais que tu identifie les vulnérabilités de Slither pour le contrat et propose un PoC de test pour Foundry afin de vérifier les vulnérabilités :\n\n"
-        f"{source_code}\n"
-    )
-
-    user_input = input("Build foundry Mistral PoC ? (Y/n) ").strip().lower()
-
-    if user_input != 'y':
-        print("Process canceled.")
-        return
-
-    mistral_model = "codestral-latest"
-    data = {
-        "model": f"{mistral_model}",
-        "messages": [{"role": "user", "content": prompt}]
-    }
-
-    # Lancer l'animation de chargement dans un autre thread
-    stop_loading = False
-    loading_thread = threading.Thread(target=loading_animation)
-    loading_thread.start()
-
-    # Appel de l'API Mistral
-    response = requests.post(MISTRAL_API_URL, headers=headers, json=data)
-
-    # Stopper l'animation une fois l'appel terminé
-    stop_loading = True
-    loading_thread.join()  # Attendre la fin du thread d'animation
-
-    # Affichage de l'analyse ou de l'erreur
-    if response.status_code == 200:
-        analysis = response.json()['choices'][0]['message']['content']
-        print(Fore.WHITE + "\n[" + Fore.YELLOW + "MISTRAL RESULT" + Fore.WHITE + "]\n" + Fore.CYAN + analysis + Fore.WHITE)
-    else:
-        print(Fore.RED + "[ERROR]" + Fore.WHITE + " failed to call " + Fore.YELLOW + f"[{mistral_model}]" + " mistral api :", response.text)
-
-## ETH SCAN CONTRACT FUNCTION
-#######################
-#######################
-
-def eth_scan_contract(contract_address):
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " perform to Myth attack")
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
@@ -228,6 +447,7 @@ def eth_scan_contract(contract_address):
         print("Check" + Fore.MAGENTA + " >> ", account_address, ":" + Fore.WHITE)
 
         for symbol, balance in token_balances.items():
+            print(Fore.GREEN + "[CONTRACT FOUND!]" + Fore.WHITE)
             print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
 
         url_contract_details = f'https://api.etherscan.io/api?module=contract&action=getsourcecode&address={contract_address}&apikey={api_key}'
@@ -258,7 +478,195 @@ def eth_scan_contract(contract_address):
                 filename = os.path.join("eth_check", contract_address + ".sol")
 
                 if os.path.exists(filename):
-                    print(Fore.WHITE + "[" + Fore.RED + "avoided" + Fore.WHITE + "]" + Fore.YELLOW + ".sol already exists." + Fore.WHITE)
+                    print(Fore.WHITE + "[" + Fore.RED + "avoided" + Fore.WHITE + "]" + Fore.YELLOW + " .sol already exists." + Fore.WHITE)
+                else:
+                    with open(filename, "w") as f:
+                        f.write(source_code)
+                    print(Fore.CYAN + "Contract source code saved at " + Fore.CYAN + f"{filename}" + Fore.WHITE)
+
+                # Nouvelle commande: Utilisation de Mythril pour analyser le contrat
+                print(Fore.YELLOW + "[INFO] Running Mythril analysis..." + Fore.WHITE)
+                subprocess.run(["myth", "a", filename])  # Commande "myth a" pour analyser le contrat
+                print(Fore.GREEN + "[200 OK] Mythril analysis completed." + Fore.WHITE)
+
+                # Analyse par Mystral
+                analyze_with_mistral(source_code)
+
+            else:
+                print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " No pragma solidity declaration found in the contract source code.")
+        else:
+            print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " Error retrieving contract details:", data_contract_details['message'])
+    else:
+        print(Fore.WHITE + "[" + Fore.RED + "CRITICAL" + Fore.WHITE + "]" + " Data retrieval error:", data_transfers['message'])
+
+
+## MISTRAL ANALYSE & GEN POC FUNCTION
+#######################
+#######################
+
+def analyze_with_mistral(source_code):
+    global stop_loading  # Déclare stop_loading comme global
+
+    MISTRAL_API_URL = "https://codestral.mistral.ai/v1/chat/completions"  
+    mistral_api_key = "SPVhQvPY2313gzVXeDVKYANdeIbSWDfZ"  # Remplace par ta clé d'API Mistral
+    
+    headers = {
+        "Authorization": "Bearer " + f"{mistral_api_key}",
+        "Content-Type": "application/json"
+    }
+
+    prompt = (
+        "Tu es un expert en analyse de smart contrats et j'aimerais que tu identifie les vulnérabilités de Slither pour le contrat et propose un PoC de test pour Foundry afin de vérifier les vulnérabilités :\n\n"
+        f"{source_code}\n"
+    )
+
+    user_input = input("Build foundry Mistral PoC ? (Y/n) ").strip().lower()
+
+    if user_input != 'y':
+        print(Fore.RED + "[EXIT] " + Fore.YELLOW + "Process canceled." + Fore.WHITE)
+        return
+    
+    mistral_model = "codestral-latest"
+    data = {
+        "model": f"{mistral_model}",
+        "messages": [{"role": "user", "content": prompt}]
+    }
+
+    stop_loading = False
+    loading_thread = threading.Thread(target=loading_animation)
+    loading_thread.start()
+
+    try:
+        response2 = requests.post(MISTRAL_API_URL, headers=headers, json=data)
+
+        stop_loading = True
+        loading_thread.join()  # Attendre la fin du thread d'animation
+
+        # Affichage de l'analyse ou de l'erreur
+        if response2.status_code == 200:
+            analysis = response2.json()['choices'][0]['message']['content']
+            print(Fore.MAGENTA + "\n[API] " + Fore.YELLOW + "[MISTRAL RESULT] " + Fore.CYAN + analysis + Fore.WHITE)
+        else:
+            print(Fore.RED + "[ERROR]" + Fore.WHITE + " failed to call " + Fore.YELLOW + f"[{mistral_model}]" + " Mistral API :", response2.text)
+    
+        # Interaction continue avec Mistral
+        while True:
+            user_prompt_choice = input("Interact with Mistral API ? (Y/n) ")
+
+            if user_prompt_choice.lower() == 'n':
+                print(Fore.MAGENTA + "[API] " + Fore.YELLOW + "[MISTRAL] Interruption." + Fore.WHITE)
+                break
+
+            user_prompt = input(Fore.MAGENTA + "[API] " + Fore.YELLOW + "[MISTRAL] (press 'exit' to quit) " + Fore.WHITE + "\nDIRECT REQUEST # " + Fore.GREEN)
+
+            if user_prompt.lower() == 'exit':
+                print(Fore.MAGENTA + "[API] " + Fore.YELLOW + "[MISTRAL] Interruption." + Fore.WHITE)
+                break
+
+            prompt2 = (
+                "Tu es un expert en analyse de smart contrats avec Foundry et j'aimerais que tu m'aide :\n\n"
+                + "\n" + user_prompt
+            )
+
+            data2 = {
+                "model": "codestral-latest",
+                "messages": [{"role": "user", "content": prompt2}]
+            }
+
+            # Lancer l'animation de chargement dans un autre thread
+            stop_loading = False
+            loading_thread = threading.Thread(target=loading_animation)
+            loading_thread.start()
+
+            try:
+                # Appel de l'API Mistral
+                response = requests.post(MISTRAL_API_URL, headers=headers, json=data2)
+
+                # Stopper l'animation une fois l'appel terminé
+                stop_loading = True
+                loading_thread.join()  # Attendre la fin du thread d'animation
+
+                # Affichage de l'analyse ou de l'erreur
+                if response.status_code == 200:
+                    analysis = response.json()['choices'][0]['message']['content']
+                    print(Fore.MAGENTA + "\n[API] " + Fore.YELLOW + "[MISTRAL RESULT] " + Fore.CYAN + analysis + Fore.WHITE)
+                else:
+                    print(Fore.RED + "[ERROR]" + Fore.WHITE + " failed to call Mistral API :", response.text)
+            except Exception as e:
+                stop_loading = True
+                loading_thread.join()  # Attendre la fin du thread d'animation
+                print(Fore.RED + "[ERROR]" + Fore.WHITE + f" Exception occurred: {str(e)}")
+    
+    except Exception as e:
+        stop_loading = True
+        loading_thread.join()  # Attendre la fin du thread d'animation
+        print(Fore.RED + "[ERROR]" + Fore.WHITE + f" Exception occurred: {str(e)}")
+
+## ETH SCAN CONTRACT FUNCTION
+#######################
+#######################
+
+def eth_scan_contract(contract_address):
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " perform to Slither attack")
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
+    print("")
+
+    api_key = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
+    account_address = contract_address
+
+    url_transfers = f'https://api.etherscan.io/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
+
+    response_transfers = requests.get(url_transfers)
+    data_transfers = response_transfers.json()
+
+    if data_transfers['status'] == "1":
+        token_transfers = data_transfers['result']
+        token_balances = {}
+
+        for tx in token_transfers:
+            token_symbol = tx['tokenSymbol']
+            token_amount = int(tx['value']) / (10 ** int(tx['tokenDecimal']))
+
+            if token_symbol in token_balances:
+                token_balances[token_symbol] += token_amount
+            else:
+                token_balances[token_symbol] = token_amount
+
+        print("Check" + Fore.MAGENTA + " >> ", account_address, ":" + Fore.WHITE)
+
+        for symbol, balance in token_balances.items():
+            print(Fore.GREEN + "[CONTRACT FOUND!]" + Fore.WHITE)
+            print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
+
+        url_contract_details = f'https://api.etherscan.io/api?module=contract&action=getsourcecode&address={contract_address}&apikey={api_key}'
+        response_contract_details = requests.get(url_contract_details)
+        data_contract_details = response_contract_details.json()
+
+        if data_contract_details['status'] == "1":
+            source_code = data_contract_details['result'][0]['SourceCode']
+            match = re.search(r"pragma solidity\s+([^\s]+);", source_code)
+            if match:
+                solidity_version = match.group(1)
+                print("Solidity Compiler:", solidity_version)
+
+                time.sleep(2)
+
+                print("")
+                print("")
+                print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " CONTRACT CODE" + Fore.CYAN)
+                print("")
+                print("")
+                print(source_code)
+                print("")
+                print("")
+
+                if not os.path.exists("eth_check"):
+                    os.makedirs("eth_check")
+
+                filename = os.path.join("eth_check", contract_address + ".sol")
+
+                if os.path.exists(filename):
+                    print(Fore.WHITE + "[" + Fore.RED + "avoided" + Fore.WHITE + "]" + Fore.YELLOW + " .sol already exists." + Fore.WHITE)
                 else:
                     with open(filename, "w") as f:
                         f.write(source_code)
@@ -272,7 +680,7 @@ def eth_scan_contract(contract_address):
                     subprocess.run(["solc-select", "use", solidity_version])
                     print(Fore.YELLOW + f"{solidity_version}" + Fore.CYAN + " Solidity compiler successfully added." + Fore.WHITE)
                     subprocess.run(["slither", filename])
-                    print(Fore.GREEN + "[200 OK] Slither analysis completed." + Fore.WHITE)
+                    print(Fore.GREEN + "[200 OK] " + Fore.YELLOW + "Slither analysis completed." + Fore.WHITE)
 
                     # Analyse par Mystral
                     analyze_with_mistral(source_code)
@@ -291,6 +699,7 @@ def eth_scan_contract(contract_address):
 #######################
 
 def avax_scan_contract(contract_address):
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " perform to Slither attack")
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
@@ -321,6 +730,7 @@ def avax_scan_contract(contract_address):
 
         print("Check" + Fore.YELLOW + " >> ", account_address, ":" + Fore.WHITE)
         for symbol, balance in token_balances.items():
+            print(Fore.GREEN + "[CONTRACT FOUND!]" + Fore.WHITE)
             print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
 
         # Get contract source code from Snowscan.xyz
@@ -387,15 +797,13 @@ def avax_scan_contract(contract_address):
 #######################
 
 def base_scan_contract(contract_address):
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " perform to Slither attack")
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
     api_key = 'VUNI3HKC7VDBRRAJEUAJWA5ABDIKFF9AIS'
 
     account_address = (contract_address)
-
-    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. 🔍" + Fore.WHITE)
-    print("")
 
     url_transfers = f'https://api.basescan.org/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
 
@@ -424,6 +832,7 @@ def base_scan_contract(contract_address):
         print("Check" + Fore.MAGENTA + " >> ", account_address, ":" + Fore.WHITE)
 
         for symbol, balance in token_balances.items():
+            print(Fore.GREEN + "[CONTRACT FOUND!]" + Fore.WHITE)
             print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
 
         # Get contract source code from BaseScan
@@ -493,15 +902,13 @@ def base_scan_contract(contract_address):
 #######################
 
 def bsc_scan_contract(contract_address):
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " perform to Slither attack")
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
     api_key = 'M41SV3B61NEEH55ZZ421ABE7CHWND7SWTW'
 
     account_address = (contract_address)
-
-    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. 🔍" + Fore.WHITE)
-    print("")
 
     url_transfers = f'https://api.bscscan.com/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
 
@@ -530,6 +937,7 @@ def bsc_scan_contract(contract_address):
         print("Check" + Fore.MAGENTA + " >> ", account_address, ":" + Fore.WHITE)
 
         for symbol, balance in token_balances.items():
+            print(Fore.GREEN + "[CONTRACT FOUND!]" + Fore.WHITE)
             print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
 
         # Get contract source code from BscScan
@@ -597,15 +1005,13 @@ def bsc_scan_contract(contract_address):
 #######################
 
 def cro_scan_contract(contract_address):
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " perform to Slither attack")
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
     api_key = 'UF9N1SZS5PCB647XVBE7AQ2XJVXQH7ZPSP'
 
     account_address = (contract_address)
-
-    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. 🔍" + Fore.WHITE)
-    print("")
 
     url_transfers = f'https://api.cronoscan.com/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
 
@@ -634,6 +1040,7 @@ def cro_scan_contract(contract_address):
         print("Check" + Fore.MAGENTA + " >> ", account_address, ":" + Fore.WHITE)
 
         for symbol, balance in token_balances.items():
+            print(Fore.GREEN + "[CONTRACT FOUND!]" + Fore.WHITE)
             print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
 
         # Get contract source code from CronoScan
@@ -701,15 +1108,13 @@ def cro_scan_contract(contract_address):
 #######################
 
 def polygon_scan_contract(contract_address):
+    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " perform to Slither attack")
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
     api_key = 'XUM9KC73EVNM682515IUCQJKC8TFW2GXMI'
 
     account_address = (contract_address)
-
-    print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. 🔍" + Fore.WHITE)
-    print("")
 
     url_transfers = f'https://api.polygonscan.com/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
 
@@ -738,6 +1143,7 @@ def polygon_scan_contract(contract_address):
         print("Check" + Fore.MAGENTA + " >> ", account_address, ":" + Fore.WHITE)
 
         for symbol, balance in token_balances.items():
+            print(Fore.GREEN + "[CONTRACT FOUND!]" + Fore.WHITE)
             print("Symbol: " + Fore.CYAN + f"{symbol}" + Fore.WHITE + " | " + Fore.WHITE + "Token Balance: " + Fore.CYAN + f"{balance}" + Fore.WHITE)
 
         # Get contract source code from Polygonscan
@@ -907,18 +1313,45 @@ def main():
             handle_chain_selection(args.chain)
         else:
             print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " You must provide a chain name for the 'chain' command.")
+
+
+
+
     elif args.command == 'mtest':
         if args.contract_address and args.chain == 'eth':
             print("[!] you have chosen to run the mtest program with Etherscan API.")
-            eth_myth_scan_contract(args.contract_address)
+            eth_myth_scan_contract(args.contract_address)  
         else:
             print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " You must provide a contract address for the 'mtest' command with 'ether'.")
+
+
+
+
+
     elif args.command == 'catf':
         if args.contract_address and args.chain == 'eth':
             print("[!] you have chosen to run the catf program with Etherscan API.")
-            call_catf_program(args.contract_address)
+            call_catf_program_ether_network(args.contract_address)
+        elif args.contract_address and args.chain == 'base':
+            print("[!] you have chosen to run the scan program with Base API.")
+            call_catf_program_base_network(args.contract_address) 
+        elif args.contract_address and args.chain == 'bsc':
+            print("[!] you have chosen to run the scan program with Bsc API.")
+            call_catf_program_bsc_network(args.contract_address)
+        elif args.contract_address and args.chain == 'cronos':
+            print("[!] you have chosen to run the scan program with Cronos API.")
+            call_catf_program_cronos_network(args.contract_address)
+        elif args.contract_address and args.chain == 'avax':
+            print("[!] you have chosen to run the scan program with Avax API.")
+            call_catf_program_avax_network(args.contract_address)
+        elif args.contract_address and args.chain == 'polygon':
+            print("[!] you have chosen to run the scan program with Polygon API.")
+            call_catf_program_polygon_network(args.contract_address)
         else:
             print(Fore.WHITE + "[" + Fore.RED + "ERROR" + Fore.WHITE + "]" + " You must provide a contract address for the 'catf' command with 'ether'.")
+
+
+
     elif args.command == 'stest':
         if args.contract_address and args.chain == 'avax':
             print("[!] you have chosen to run the scan program with Avalanche API.")
