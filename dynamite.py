@@ -26,12 +26,12 @@ import time
 
 ################
 
-ETHERSCAN_API_KEY = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
-BASE_API_KEY = 'VUNI3HKC7VDBRRAJEUAJWA5ABDIKFF9AIS'
-BSC_API_KEY = 'M41SV3B61NEEH55ZZ421ABE7CHWND7SWTW'
-CRO_API_KEY = 'UF9N1SZS5PCB647XVBE7AQ2XJVXQH7ZPSP'
-AVAX_API_KEY = 'J9BG6RAZB3R3W114MCTXP439D547SRNZGY'
-POLYGON_API_KEY = 'XUM9KC73EVNM682515IUCQJKC8TFW2GXMI'
+ETHERSCAN_API_KEY = 'ETHERSCAN_API_KEY'
+BASE_API_KEY = 'BASE_API_KEY'
+BSC_API_KEY = 'BSC_API_KEY'
+CRO_API_KEY = 'CRO_API_KEY'
+AVAX_API_KEY = 'AVAX_API_KEY'
+POLYGON_API_KEY = 'POLYGON_API_KEY'
 
 ################
 
@@ -218,7 +218,7 @@ def analyze_func_with_mistral(functions):
     global stop_loading
 
     MISTRAL_API_URL = "https://codestral.mistral.ai/v1/chat/completions"  
-    mistral_api_key = "SPVhQvPY2313gzVXeDVKYANdeIbSWDfZ"  # Remplace par ta clé d'API Mistral
+    mistral_api_key = "mistral_api_key"  # Remplace par ta clé d'API Mistral
     
     headers = {
         "Authorization": "Bearer " + f"{mistral_api_key}",
@@ -423,7 +423,7 @@ def eth_myth_scan_contract(contract_address):
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
-    api_key = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
+    api_key = 'api_key'
     account_address = contract_address
 
     url_transfers = f'https://api.etherscan.io/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
@@ -508,7 +508,7 @@ def analyze_with_mistral(source_code):
     global stop_loading  # Déclare stop_loading comme global
 
     MISTRAL_API_URL = "https://codestral.mistral.ai/v1/chat/completions"  
-    mistral_api_key = "SPVhQvPY2313gzVXeDVKYANdeIbSWDfZ"  # Remplace par ta clé d'API Mistral
+    mistral_api_key = "mistral_api_key"  # Remplace par ta clé d'API Mistral
     
     headers = {
         "Authorization": "Bearer " + f"{mistral_api_key}",
@@ -611,7 +611,7 @@ def eth_scan_contract(contract_address):
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
-    api_key = '9VWN8UD5TVYKAVMN1IVXJ2QRVR3HHDAFSB'
+    api_key = 'api_key'
     account_address = contract_address
 
     url_transfers = f'https://api.etherscan.io/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
@@ -703,7 +703,7 @@ def avax_scan_contract(contract_address):
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
-    api_key = 'J9BG6RAZB3R3W114MCTXP439D547SRNZGY'
+    api_key = 'api_key'
     account_address = contract_address
 
     url_transfers = f'https://api.snowscan.xyz/api?module=account&action=tokentx&contractaddress={contract_address}&address={account_address}&page=1&offset=100&sort=asc&apikey={api_key}'
@@ -801,7 +801,7 @@ def base_scan_contract(contract_address):
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
-    api_key = 'VUNI3HKC7VDBRRAJEUAJWA5ABDIKFF9AIS'
+    api_key = 'api_key'
 
     account_address = (contract_address)
 
@@ -906,7 +906,7 @@ def bsc_scan_contract(contract_address):
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
-    api_key = 'M41SV3B61NEEH55ZZ421ABE7CHWND7SWTW'
+    api_key = 'api_key'
 
     account_address = (contract_address)
 
@@ -1009,7 +1009,7 @@ def cro_scan_contract(contract_address):
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
-    api_key = 'UF9N1SZS5PCB647XVBE7AQ2XJVXQH7ZPSP'
+    api_key = 'api_key'
 
     account_address = (contract_address)
 
@@ -1112,7 +1112,7 @@ def polygon_scan_contract(contract_address):
     print(Fore.WHITE + "[" + Fore.YELLOW + "INFO" + Fore.WHITE + "]" + " dynamite looks for contract datas .. " + Fore.WHITE)
     print("")
 
-    api_key = 'XUM9KC73EVNM682515IUCQJKC8TFW2GXMI'
+    api_key = 'api_key'
 
     account_address = (contract_address)
 
