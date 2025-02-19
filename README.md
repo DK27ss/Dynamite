@@ -12,7 +12,7 @@ Dynamite is a tool for automatically analyzes a smart contract using auto solc a
 - automatically DETECTS tokens symbols, tokens balances and the smart contract solidity compiler version.
 - automatically ADAPTS the compiler version to the smart contract compiler version, so that the slither scan can be performed as quickly as possible
 - performs static analysis with Slither
-- performs exploit analysis & PoC generation with MistralAI
+- performs exploit analysis & generation with MistralAI
 - performs static analysis & symbolic execution with Mythril [SOON]
 - performs static analysis with Echidna [SOON]
 
