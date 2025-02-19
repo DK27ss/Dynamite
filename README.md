@@ -3,15 +3,18 @@
 Bêta version 0.5
 Developped and maintained by [@DK27ss](https://github.com/DK27ss)
 
+## Description:
+
 Dynamite is a tool for automatically analyzes a smart contract using auto solc adapt; external modules (slither / mythril / echidna) and APIs.
 
 
 ![afjhxolq](https://github.com/user-attachments/assets/668b9499-ff15-4020-a680-2d68dc065552)
 
+## Features:
 
-> it automatically detects tokens symbols, tokens balances and the smart contract solidity compiler version.
+- it automatically detects tokens symbols, tokens balances and the smart contract solidity compiler version.
 
-> it automatically adapts the compiler version to the smart contract compiler version, so that the slither scan can be performed as quickly as possible
+- it automatically adapts the compiler version to the smart contract compiler version, so that the slither scan can be performed as quickly as possible
 
 
 
