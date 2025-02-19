@@ -59,7 +59,9 @@ Dynamite is a tool for automatically analyzes a smart contract using auto solc a
 # Dynamite Usage
 // Simple Dynamite Run
 
+>> Once all the requirements have been installed, or if you already have the requirements on your system, you can type the following command to launch the dynamite.
 
+    python dynamite.py [help / -h]
 
 https://github.com/user-attachments/assets/be051f22-0c67-48e3-9f11-5585bff29992
 
@@ -67,11 +69,6 @@ https://github.com/user-attachments/assets/be051f22-0c67-48e3-9f11-5585bff29992
 
 https://github.com/user-attachments/assets/c968bb9e-f44a-41d2-89e3-588d677e76dd
 
-
-
-> Once all the requirements have been installed, or if you already have the requirements on your system, you can type the following command to launch the dynamite.
-
-    python dynamite.py
     
 ![dyn](https://github.com/DK27ss/Dynamite/assets/134336163/5e745780-729e-4088-b3b8-ebe3276b0fb7)
 
