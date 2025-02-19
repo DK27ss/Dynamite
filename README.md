@@ -9,9 +9,11 @@ Dynamite is a tool for automatically analyzes a smart contract using auto solc a
 
 ## Features:
 
-- it automatically detects tokens symbols, tokens balances and the smart contract solidity compiler version.
+- automatically DETECTS tokens symbols, tokens balances and the smart contract solidity compiler version.
+- automatically ADAPTS the compiler version to the smart contract compiler version, so that the slither scan can be performed as quickly as possible
+- performs static analysis & symbolic execution with Mythril [SOON]
+- performs static analysis with Echidna [SOON]
 
-- it automatically adapts the compiler version to the smart contract compiler version, so that the slither scan can be performed as quickly as possible
 
 
 
