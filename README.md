@@ -34,13 +34,10 @@ Dynamite is a tool for automatically analyzes a smart contract using auto solc a
 // Install solc with Linux Packages
 
     sudo add-apt-repository ppa:ethereum/ethereum
-    sudo apt-get update
-    sudo apt-get install solc
-
-    sudo add-apt-repository ppa:ethereum/ethereum
     sudo add-apt-repository ppa:ethereum/ethereum-dev
     sudo apt-get update
     sudo apt-get install solc
+    sudo apt-get install solc-select
     
 
 // Install solc with Snap
